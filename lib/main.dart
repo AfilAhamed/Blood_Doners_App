@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Firebase_CRUD',
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.redAccent, centerTitle: true),
+        appBarTheme:
+            const AppBarTheme(backgroundColor: Colors.red, centerTitle: true),
         useMaterial3: false,
       ),
       home: HomeScreen(),

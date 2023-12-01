@@ -17,20 +17,6 @@ class HomeScreen extends StatelessWidget {
             style: TextStyle(fontSize: 22),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.redAccent,
-            shape: const CircleBorder(),
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddUserScreen(),
-                  ));
-            }),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: StreamBuilder(
@@ -48,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                             tileColor: Colors.white,
                             leading: CircleAvatar(
                                 radius: 25,
-                                backgroundColor: Colors.redAccent,
+                                backgroundColor: Colors.red,
                                 child: Text(
                                   data['group'],
                                   style: const TextStyle(color: Colors.white),
@@ -84,6 +70,20 @@ class HomeScreen extends StatelessWidget {
                     });
               }),
         ),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.red,
+            shape: const CircleBorder(),
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddUserScreen(),
+                  ));
+            }),
       ),
     );
   }

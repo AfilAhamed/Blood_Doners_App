@@ -89,8 +89,7 @@ class AddUserScreen extends StatelessWidget {
                   style: const ButtonStyle(
                       minimumSize:
                           MaterialStatePropertyAll(Size(double.infinity, 50)),
-                      backgroundColor:
-                          MaterialStatePropertyAll(Colors.redAccent)),
+                      backgroundColor: MaterialStatePropertyAll(Colors.red)),
                   onPressed: () {
                     addDonor();
                     Navigator.pop(context);
