@@ -1,4 +1,5 @@
 import 'package:blood_donor_app/firebase_options.dart';
+import 'package:blood_donor_app/view/edit_screen/edit_screen.dart';
 import 'package:blood_donor_app/view/home_screen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/update': (context) => EditScreen(),
+      },
       debugShowCheckedModeBanner: false,
       title: 'Firebase_CRUD',
       theme: ThemeData(
