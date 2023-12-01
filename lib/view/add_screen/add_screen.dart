@@ -1,11 +1,27 @@
 import 'package:blood_donor_app/controller/add_user_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AddUserScreen extends StatelessWidget {
-  const AddUserScreen({super.key});
-
+  AddUserScreen({super.key});
+  final CollectionReference firebaseData =
+      FirebaseFirestore.instance.collection('Donors Data');
   @override
   Widget build(BuildContext context) {
+    String? selectedGroups;
+
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController numberController = TextEditingController();
+
+    void addDonor() {
+      final donor = {
+        'name': nameController.text,
+        'number': numberController.text,
+        'group': selectedGroups
+      };
+      firebaseData.add(donor);
+    }
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -16,6 +32,7 @@ class AddUserScreen extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
+                controller: nameController,
                 decoration: const InputDecoration(
                   hintText: 'Name',
                   enabledBorder: OutlineInputBorder(
@@ -33,6 +50,7 @@ class AddUserScreen extends StatelessWidget {
                 height: 13,
               ),
               TextFormField(
+                controller: numberController,
                 maxLength: 10,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
@@ -60,7 +78,7 @@ class AddUserScreen extends StatelessWidget {
                       .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                       .toList(),
                   onChanged: (value) {
-                    AddUserController().selectedGroups = value as String?;
+                    selectedGroups = value as String?;
                   },
                 ),
               ),
@@ -73,7 +91,10 @@ class AddUserScreen extends StatelessWidget {
                           MaterialStatePropertyAll(Size(double.infinity, 50)),
                       backgroundColor:
                           MaterialStatePropertyAll(Colors.redAccent)),
-                  onPressed: () {},
+                  onPressed: () {
+                    addDonor();
+                    Navigator.pop(context);
+                  },
                   child: const Text(
                     'ADD',
                     style: TextStyle(

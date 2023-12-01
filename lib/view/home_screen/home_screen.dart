@@ -10,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.grey.shade300,
         appBar: AppBar(
           title: const Text(
             'HomeScreen',
@@ -27,24 +28,24 @@ class HomeScreen extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const AddUserScreen(),
+                    builder: (context) => AddUserScreen(),
                   ));
             }),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(10.0),
           child: StreamBuilder(
-              stream: firebaseData.snapshots(),
+              stream: firebaseData.orderBy('name').snapshots(),
               builder: (context, AsyncSnapshot snapshots) {
                 return ListView.builder(
                     itemCount: snapshots.data!.docs.length,
                     itemBuilder: (context, index) {
                       final DocumentSnapshot data = snapshots.data!.docs[index];
                       return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 3),
+                          padding: const EdgeInsets.symmetric(vertical: 5),
                           child: ListTile(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                            tileColor: Colors.grey.shade300,
+                            tileColor: Colors.white,
                             leading: CircleAvatar(
                                 radius: 25,
                                 backgroundColor: Colors.redAccent,
@@ -65,14 +66,14 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 IconButton(
                                     onPressed: () {},
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.edit,
                                       color: Colors.blue,
                                       size: 27,
                                     )),
                                 IconButton(
                                     onPressed: () {},
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.delete,
                                       color: Colors.red,
                                       size: 27,
