@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
             backgroundColor: Colors.redAccent, centerTitle: true),
-        // useMaterial3: true,
+        useMaterial3: false,
       ),
-      home: const HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }

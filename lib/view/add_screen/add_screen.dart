@@ -9,7 +9,7 @@ class AddUserScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('AddScreen', style: TextStyle(color: Colors.white)),
+          title: const Text('AddScreen', style: TextStyle(fontSize: 22)),
         ),
         body: Padding(
           padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
