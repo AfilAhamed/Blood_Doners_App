@@ -1,18 +1,12 @@
 import 'package:blood_donor_app/controller/crud_controller.dart';
 import 'package:blood_donor_app/model/donors_model.dart';
 import 'package:blood_donor_app/view/add_screen/add_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:blood_donor_app/view/edit_screen/edit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
-  final CollectionReference firebaseData =
-      FirebaseFirestore.instance.collection('Donors Data');
-
-  void deletebyId(id) {
-    firebaseData.doc(id).delete();
-  }
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,12 +54,14 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               IconButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(arguments: {
-                                      'name': data.name,
-                                      'number': data.number,
-                                      'group': data.group,
-                                      'id': data.id
-                                    }, context, '/update');
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => EditScreen(
+                                                name: data.name,
+                                                number: data.number,
+                                                group: data.group,
+                                                id: data.id)));
                                   },
                                   icon: const Icon(
                                     Icons.edit,
@@ -100,7 +96,7 @@ class HomeScreen extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AddUserScreen(),
+                    builder: (context) => const AddUserScreen(),
                   ));
             }),
       ),

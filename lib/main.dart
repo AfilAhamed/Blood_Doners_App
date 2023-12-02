@@ -1,6 +1,5 @@
 import 'package:blood_donor_app/controller/crud_controller.dart';
 import 'package:blood_donor_app/firebase_options.dart';
-import 'package:blood_donor_app/view/edit_screen/edit_screen.dart';
 import 'package:blood_donor_app/view/home_screen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +23,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CrudController())
       ],
       child: MaterialApp(
-        routes: {
-          '/update': (context) => EditScreen(),
-        },
         debugShowCheckedModeBanner: false,
         title: 'Firebase_CRUD',
         theme: ThemeData(
@@ -34,7 +30,7 @@ class MyApp extends StatelessWidget {
               const AppBarTheme(backgroundColor: Colors.red, centerTitle: true),
           useMaterial3: false,
         ),
-        home: HomeScreen(),
+        home: const HomeScreen(),
       ),
     );
   }

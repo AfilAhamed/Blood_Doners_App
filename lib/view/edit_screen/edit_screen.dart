@@ -3,16 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class EditScreen extends StatelessWidget {
-  const EditScreen({super.key});
+  const EditScreen(
+      {super.key,
+      required this.name,
+      required this.number,
+      required this.group,
+      required this.id});
+  final String? name;
+  final String? number;
+  final String? group;
+  final String? id;
 
   @override
   Widget build(BuildContext context) {
     final editProvider = Provider.of<CrudController>(context);
-    final args = ModalRoute.of(context)!.settings.arguments as Map;
-    editProvider.nameController.text = args['name'];
-    editProvider.numberController.text = args['number'];
-    editProvider.selectedGroups = args['group'];
-    final docsId = args['id'];
+    editProvider.nameController.text = name!;
+    editProvider.numberController.text = number!;
+    editProvider.selectedGroups = group;
+    final docsId = id;
 
     return SafeArea(
       child: Scaffold(

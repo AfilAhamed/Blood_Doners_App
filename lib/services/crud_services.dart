@@ -4,8 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CrudServices {
   final CollectionReference firebaseDatas =
       FirebaseFirestore.instance.collection('Donors Data');
+
   // Create
-  void addDonors(donorName, donorNumber, donorGroup) {
+  void addDonors(String donorName, String donorNumber, String donorGroup) {
     final data = DonorsModel(
             name: donorName, number: donorNumber, group: donorGroup, id: '')
         .toJson();
@@ -22,7 +23,8 @@ class CrudServices {
   }
 
   // update
-  void updateDonors(donorName, donorNumber, donorGroup, id) {
+  void updateDonors(
+      String donorName, String donorNumber, String donorGroup, id) {
     final data = DonorsModel(
             name: donorName, number: donorNumber, group: donorGroup, id: id)
         .toJson();
