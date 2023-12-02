@@ -1,26 +1,13 @@
 import 'package:blood_donor_app/controller/add_user_controller.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddUserScreen extends StatelessWidget {
-  AddUserScreen({super.key});
-  final CollectionReference firebaseData =
-      FirebaseFirestore.instance.collection('Donors Data');
+  const AddUserScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    String? selectedGroups;
-
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController numberController = TextEditingController();
-
-    void addDonor() {
-      final donor = {
-        'name': nameController.text,
-        'number': numberController.text,
-        'group': selectedGroups
-      };
-      firebaseData.add(donor);
-    }
+    final addProvider = Provider.of<AddUserController>(context);
 
     return SafeArea(
       child: Scaffold(
@@ -32,7 +19,7 @@ class AddUserScreen extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
-                controller: nameController,
+                controller: addProvider.nameController,
                 decoration: const InputDecoration(
                   hintText: 'Name',
                   enabledBorder: OutlineInputBorder(
@@ -50,7 +37,7 @@ class AddUserScreen extends StatelessWidget {
                 height: 13,
               ),
               TextFormField(
-                controller: numberController,
+                controller: addProvider.numberController,
                 maxLength: 10,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
@@ -78,7 +65,7 @@ class AddUserScreen extends StatelessWidget {
                       .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                       .toList(),
                   onChanged: (value) {
-                    selectedGroups = value as String?;
+                    addProvider.selectedGroups = value as String?;
                   },
                 ),
               ),
@@ -91,7 +78,7 @@ class AddUserScreen extends StatelessWidget {
                           MaterialStatePropertyAll(Size(double.infinity, 50)),
                       backgroundColor: MaterialStatePropertyAll(Colors.red)),
                   onPressed: () {
-                    addDonor();
+                    addProvider.addDonors();
                     Navigator.pop(context);
                   },
                   child: const Text(
