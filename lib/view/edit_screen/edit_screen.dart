@@ -1,16 +1,9 @@
 import 'package:blood_donor_app/controller/crud_controller.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class EditScreen extends StatelessWidget {
-  EditScreen({super.key});
-
-  // final CollectionReference firebaseData =
-  //     FirebaseFirestore.instance.collection('Donors Data');
-  // final TextEditingController nameController = TextEditingController();
-  // final TextEditingController numberController = TextEditingController();
-  // String? selectedGroups;
+  const EditScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

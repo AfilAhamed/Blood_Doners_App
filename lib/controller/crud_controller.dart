@@ -25,7 +25,6 @@ class CrudController extends ChangeNotifier {
   //get donor details
   void getDonors() async {
     donorsDetails = await CrudServices().getDonors();
-    print(donorsDetails);
     notifyListeners();
   }
 
