@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeProvider = Provider.of<CrudController>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.shade300,
@@ -59,12 +60,12 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               IconButton(
                                   onPressed: () {
-                                    // Navigator.pushNamed(arguments: {
-                                    //   'name': data['name'],
-                                    //   'number': data['number'],
-                                    //   'group': data['group'],
-                                    //   'id': data.id
-                                    // }, context, '/update');
+                                    Navigator.pushNamed(arguments: {
+                                      'name': data.name,
+                                      'number': data.number,
+                                      'group': data.group,
+                                      'id': data.id
+                                    }, context, '/update');
                                   },
                                   icon: const Icon(
                                     Icons.edit,
@@ -73,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                                   )),
                               IconButton(
                                   onPressed: () {
-                                    //deletebyId();
+                                    homeProvider.deleteDonor(data.id);
                                   },
                                   icon: const Icon(
                                     Icons.delete,
@@ -93,6 +94,9 @@ class HomeScreen extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
+              homeProvider.nameController.clear();
+              homeProvider.numberController.clear();
+              homeProvider.selectedGroups = '';
               Navigator.push(
                   context,
                   MaterialPageRoute(

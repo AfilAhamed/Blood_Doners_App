@@ -1,31 +1,24 @@
 import 'package:blood_donor_app/controller/crud_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EditScreen extends StatelessWidget {
   EditScreen({super.key});
 
-  final CollectionReference firebaseData =
-      FirebaseFirestore.instance.collection('Donors Data');
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController numberController = TextEditingController();
-  String? selectedGroups;
-
-  void update(id) {
-    final data = {
-      'name': nameController.text,
-      'number': numberController.text,
-      'group': selectedGroups,
-    };
-    firebaseData.doc(id).update(data);
-  }
+  // final CollectionReference firebaseData =
+  //     FirebaseFirestore.instance.collection('Donors Data');
+  // final TextEditingController nameController = TextEditingController();
+  // final TextEditingController numberController = TextEditingController();
+  // String? selectedGroups;
 
   @override
   Widget build(BuildContext context) {
+    final editProvider = Provider.of<CrudController>(context);
     final args = ModalRoute.of(context)!.settings.arguments as Map;
-    nameController.text = args['name'];
-    numberController.text = args['number'];
-    selectedGroups = args['group'];
+    editProvider.nameController.text = args['name'];
+    editProvider.numberController.text = args['number'];
+    editProvider.selectedGroups = args['group'];
     final docsId = args['id'];
 
     return SafeArea(
@@ -38,7 +31,7 @@ class EditScreen extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
-                controller: nameController,
+                controller: editProvider.nameController,
                 decoration: const InputDecoration(
                   hintText: 'Name',
                   enabledBorder: OutlineInputBorder(
@@ -56,7 +49,7 @@ class EditScreen extends StatelessWidget {
                 height: 13,
               ),
               TextFormField(
-                controller: numberController,
+                controller: editProvider.numberController,
                 maxLength: 10,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
@@ -78,7 +71,7 @@ class EditScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DropdownButtonFormField(
-                  value: selectedGroups,
+                  value: editProvider.selectedGroups,
                   hint: const Text('Blood Group'),
                   items: CrudController()
                       .bloodGroups
@@ -88,7 +81,7 @@ class EditScreen extends StatelessWidget {
                           ))
                       .toList(),
                   onChanged: (value) {
-                    selectedGroups = value as String?;
+                    editProvider.selectedGroups = value as String?;
                   },
                 ),
               ),
@@ -101,7 +94,7 @@ class EditScreen extends StatelessWidget {
                           MaterialStatePropertyAll(Size(double.infinity, 50)),
                       backgroundColor: MaterialStatePropertyAll(Colors.red)),
                   onPressed: () {
-                    update(docsId);
+                    editProvider.updateDonors(docsId);
                     Navigator.pop(context);
                   },
                   child: const Text(

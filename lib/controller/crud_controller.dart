@@ -18,6 +18,7 @@ class CrudController extends ChangeNotifier {
     CrudServices()
         .addDonors(nameController.text, numberController.text, selectedGroups);
     getDonors();
+
     notifyListeners();
   }
 
@@ -25,6 +26,21 @@ class CrudController extends ChangeNotifier {
   void getDonors() async {
     donorsDetails = await CrudServices().getDonors();
     print(donorsDetails);
+    notifyListeners();
+  }
+
+  //update donor details
+  void updateDonors(id) {
+    CrudServices().updateDonors(
+        nameController.text, numberController.text, selectedGroups, id);
+    getDonors();
+    notifyListeners();
+  }
+  // delete donor details
+
+  void deleteDonor(id) {
+    CrudServices().deleteDonors(id);
+    getDonors();
     notifyListeners();
   }
 }
