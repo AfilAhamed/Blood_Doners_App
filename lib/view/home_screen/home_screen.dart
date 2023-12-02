@@ -20,13 +20,13 @@ class HomeScreen extends StatelessWidget {
             style: TextStyle(fontSize: 22),
           ),
         ),
-        body: Consumer<CrudController>(builder: (context, provider, child) {
+        body: Consumer<CrudController>(builder: (context, homeProvider, child) {
           return Padding(
               padding: const EdgeInsets.all(10.0),
               child: ListView.builder(
-                  itemCount: provider.donorsDetails.length,
+                  itemCount: homeProvider.donorsDetails.length,
                   itemBuilder: (context, index) {
-                    final DonorsModel data = provider.donorsDetails[index];
+                    final DonorsModel data = homeProvider.donorsDetails[index];
 
                     return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
