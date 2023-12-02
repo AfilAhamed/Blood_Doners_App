@@ -21,6 +21,14 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         body: Consumer<CrudController>(builder: (context, homeProvider, child) {
+          if (homeProvider.donorsDetails.isEmpty) {
+            return const Center(
+              child: Text(
+                'No Data Avaliable',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              ),
+            );
+          }
           return Padding(
               padding: const EdgeInsets.all(10.0),
               child: ListView.builder(
