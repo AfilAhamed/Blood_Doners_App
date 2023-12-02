@@ -7,7 +7,7 @@ class AddUserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final addProvider = Provider.of<AddUserController>(context);
+    final addProvider = Provider.of<CrudController>(context);
 
     return SafeArea(
       child: Scaffold(
@@ -60,7 +60,7 @@ class AddUserScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: DropdownButtonFormField(
                   hint: const Text('Blood Group'),
-                  items: AddUserController()
+                  items: CrudController()
                       .bloodGroups
                       .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                       .toList(),

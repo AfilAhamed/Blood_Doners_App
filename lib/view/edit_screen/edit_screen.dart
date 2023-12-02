@@ -80,7 +80,7 @@ class EditScreen extends StatelessWidget {
                 child: DropdownButtonFormField(
                   value: selectedGroups,
                   hint: const Text('Blood Group'),
-                  items: AddUserController()
+                  items: CrudController()
                       .bloodGroups
                       .map((e) => DropdownMenuItem(
                             value: e,

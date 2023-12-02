@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
             style: TextStyle(fontSize: 22),
           ),
         ),
-        body: Consumer<AddUserController>(builder: (context, provider, child) {
+        body: Consumer<CrudController>(builder: (context, provider, child) {
           return Padding(
               padding: const EdgeInsets.all(10.0),
               child: ListView.builder(

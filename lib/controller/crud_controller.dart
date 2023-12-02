@@ -2,7 +2,7 @@ import 'package:blood_donor_app/model/donors_model.dart';
 import 'package:blood_donor_app/services/crud_services.dart';
 import 'package:flutter/material.dart';
 
-class AddUserController extends ChangeNotifier {
+class CrudController extends ChangeNotifier {
   final List bloodGroups = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
   String? selectedGroups;
   final TextEditingController nameController = TextEditingController();
@@ -10,7 +10,7 @@ class AddUserController extends ChangeNotifier {
 
   List<DonorsModel> donorsDetails = [];
 
-  AddUserController() {
+  CrudController() {
     getDonors();
   }
   //add Donor details
