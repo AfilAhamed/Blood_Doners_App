@@ -99,7 +99,7 @@ class EditScreen extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   child: const Text(
-                    'Edit',
+                    'Update',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 19,
